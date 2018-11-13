@@ -1,0 +1,4 @@
+This program is a simple game of Rock, Paper, Scissors against the computer. It will keep score up until either the player or the computer reach 3 points, and it will terminate. This is my first project involving Javascript.
+
+What i learned:
+Basic Javascript syntax. A majority of the time spent on this project was really actually taking the time to learn how functions and variables work together in Javascript. I still feel like I have little/no understanding, but I have scraped by with enough to get the project out and working in a way that I'm content with for now. I am interested to see if there are opportunities to revisit my code so I can attempt to condense and optimize my program with new knowledge I may aquire in the course.
