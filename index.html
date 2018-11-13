@@ -1,0 +1,105 @@
+<!Doctype HTML>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <h1>Rock Paper Scissors game!</h1>
+
+    <button onclick="game()">Let's play Rock Paper Scissors!</button>
+
+    <script>
+
+        function computerPlay() {
+
+            let randomInt = Math.floor(Math.random() * 3);
+
+            if (randomInt == 2) {
+                let randomInt = 'rock';
+                return randomInt;
+            } else if (randomInt == 1) {
+                let randomInt = 'paper';
+                return randomInt;
+            } else {
+                let randomInt = 'scissors';
+                return randomInt;
+            }
+    
+        }
+
+        function playRound(playerSelection, computerSelection, winner) {
+
+            if (playerSelection == 'rock' && computerSelection == 'scissors') {
+                let winner = 'You win! Rock beats scissors!';
+                alert(winner);
+                return winner;
+            } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+                let winner = 'You lose! Paper beats rock...';
+                alert(winner);
+                return winner;
+            } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+                let winner = 'You win! Paper beats rock!';
+                alert(winner);
+                return winner;
+            } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+                let winner = 'You lose! Scissors beat paper...';
+                alert(winner);
+                return winner;
+            } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+                let winner = 'You win! Scissors beat paper!';
+                alert(winner);
+                return winner;
+            } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+                let winner = 'You lose! Rock beats scissors...';
+                alert(winner);
+                return winner;
+            } else if (playerSelection == computerSelection) {
+                let winner = 'You tie! You both picked the same!';
+                alert(winner);
+                return winner;
+            } else {
+                let winner = "Error: You may have mispelled your choice, or you have entered an invalid option. Try again!";
+                alert(winner);
+                return winner;
+            }
+            
+        }
+
+        function scorekeeper(playerScore, computerScore) {
+            alert("Currently, our scores are: You: " + playerScore + " Computer: " + computerScore);
+        }
+
+        function game() { 
+            let playerScore = 0;
+            let computerScore = 0;
+            let winner = 0;
+
+            while(playerScore < 3 && computerScore < 3){
+
+                let playerSelection = prompt("Choose! Rock, paper, or scissors?").toLowerCase();
+                let computerSelection = computerPlay();
+
+                let result = playRound(playerSelection, computerSelection, winner);
+                if (result.includes("win")) {
+                    playerScore++;
+                    scorekeeper(playerScore, computerScore);
+                } else if (result.includes("lose")) {
+                    computerScore++;
+                    scorekeeper(playerScore, computerScore);
+                } else {
+                    scorekeeper(playerScore, computerScore);
+                }
+            }
+
+            if (playerScore == 3) {
+                alert("Congratulations! You Win!");
+            } else if (computerScore == 3) {
+                alert("Oh no! The computer wins... Try again!");
+            }
+
+        }
+
+    </script>
+</body>
+</html>
