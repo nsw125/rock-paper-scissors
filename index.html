@@ -1,105 +1,72 @@
-<!Doctype HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Rock Paper Scissors</title>
+  <title>Rock Paper Scissors Game!</title>
 </head>
-
 <body>
-    <h1>Rock Paper Scissors game!</h1>
 
-    <button onclick="game()">Let's play Rock Paper Scissors!</button>
+  <script>
 
-    <script>
+    function userPlay(){
+        playerSelection = prompt("Please choose: Rock, Paper, or Scissors?");
+        return playerSelection = playerSelection.toLowerCase();
+    }
+    function computerPlay(){
+        let randomInt = Math.floor(Math.random() * 3);
+        if (randomInt == 0){
+            return computerSelection = 'rock';
+        } else if (randomInt == 1){
+            return computerSelection = 'paper';
+        }
+            return computerSelection = 'scissors';
 
-        function computerPlay() {                                                   //Generates a random integer from 0 to 2, each integer is = Rock/Paper/Scissors
+    }
 
-            let randomInt = Math.floor(Math.random() * 3);
+    function playRound(playerSelection, computerSelection){
 
-            if (randomInt == 2) {
-                let randomInt = 'rock';
-                return randomInt;
-            } else if (randomInt == 1) {
-                let randomInt = 'paper';
-                return randomInt;
-            } else {
-                let randomInt = 'scissors';
-                return randomInt;
-            }
-    
+        if((playerSelection == 'rock' && computerSelection == 'scissors') || (playerSelection == 'paper' && computerSelection == 'rock') || (playerSelection == 'scissors' && computerSelection == 'paper')){
+            alert('You win! ' + playerSelection + ' beats ' + computerSelection + "!");
+            return result = 'win';
+        } else if ((playerSelection == 'rock' && computerSelection == 'paper') || (playerSelection == 'paper' && computerSelection == 'scissors') || (playerSelection == 'scissors' && computerSelection == 'rock')){
+            alert('You lose... ' + computerSelection + ' beats ' + playerSelection + '...');
+            return result = 'lose';
+        } else if (playerSelection == computerSelection){
+            alert('You tied.. You both picked ' + playerSelection + '.');
+            return result = 'tie';
+        } else {
+            alert('You either input your choice incorrectly or did not answer, try again. If you wish to exit the game, press Escape.');
+            return result = 'tie';
+        }
+    }
+
+    function game(){
+        let playerScore = 0;
+        let computerScore = 0;
+
+        while(playerScore < 3 && computerScore < 3){
+            userPlay();
+            computerPlay();
+            playRound(playerSelection, computerSelection);
+            if (result == 'win'){
+                ++playerScore;
+            } else if (result == 'lose'){
+                ++computerScore;
+            } else if (result == 'tie'){
+
+            }                
+            alert('Player Score: ' + playerScore + ' Computer Score: ' + computerScore);
         }
 
-        function playRound(playerSelection, computerSelection, winner) {                
-
-            if (playerSelection == 'rock' && computerSelection == 'scissors') {     //Compares the result of computerPlay to the playerSelection from prompt
-                let winner = 'You win! Rock beats scissors!';
-                alert(winner);
-                return winner;
-            } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-                let winner = 'You lose! Paper beats rock...';
-                alert(winner);
-                return winner;
-            } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-                let winner = 'You win! Paper beats rock!';
-                alert(winner);
-                return winner;
-            } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-                let winner = 'You lose! Scissors beat paper...';
-                alert(winner);
-                return winner;
-            } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-                let winner = 'You win! Scissors beat paper!';
-                alert(winner);
-                return winner;
-            } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-                let winner = 'You lose! Rock beats scissors...';
-                alert(winner);
-                return winner;
-            } else if (playerSelection == computerSelection) {
-                let winner = 'You tie! You both picked the same!';
-                alert(winner);
-                return winner;
-            } else {
-                let winner = "Error: You may have mispelled your choice, or you have entered an invalid option. Try again!";
-                alert(winner);
-                return winner;
-            }
-            
+        if (playerScore == 3){
+            alert('CONGRATULATIONS! YOU WIN!');
+        } else if (computerScore == 3){
+            alert('Oh dear...You lose...');
         }
+        alert('Hit refresh to play again.');
+    }
 
-        function scorekeeper(playerScore, computerScore) {                          //Alerts the player the current score of the game
-            alert("Currently, our scores are: You: " + playerScore + " Computer: " + computerScore);
-        }
+    game();
+  </script>
 
-        function game() {                                                           //Keeps score of the game, and alerts if someone reaches 3 points
-            let playerScore = 0;
-            let computerScore = 0;
-            let winner = 0;
-
-            while(playerScore < 3 && computerScore < 3){
-
-                let playerSelection = prompt("Choose! Rock, paper, or scissors?").toLowerCase();
-                let computerSelection = computerPlay();
-
-                let result = playRound(playerSelection, computerSelection, winner);
-                if (result.includes("win")) {
-                    playerScore++;
-                    scorekeeper(playerScore, computerScore);
-                } else if (result.includes("lose")) {
-                    computerScore++;
-                    scorekeeper(playerScore, computerScore);
-                } else {
-                    scorekeeper(playerScore, computerScore);
-                }
-            }
-
-            if (playerScore == 3) {
-                alert("Congratulations! You Win!");
-            } else if (computerScore == 3) {
-                alert("Oh no! The computer wins... Try again!");
-            }
-
-        }
-
-    </script>
 </body>
 </html>
